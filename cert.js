@@ -8,7 +8,7 @@ function checkSslExpiry(hostname) {
       port: 443,
       method: 'GET',
       agent: new https.Agent({ rejectUnauthorized: true }),
-      checkServerIdentity: () => undefined, // Do not verify the hostname
+      checkServerIdentity: () => undefined,
     };
 
     const req = https.request(options, (res) => {
@@ -16,7 +16,7 @@ function checkSslExpiry(hostname) {
       if (!cert) {
         reject(new Error('Certificate was not found'));
       } else {
-        const expiryDate = new Date(cert.valid_to).toISOString(); // ISO format for JSON compatibility
+        const expiryDate = new Date(cert.valid_to).toISOString();
         // Issuer details
         const issuerDetails = {
           country: cert.issuer.C,
@@ -40,7 +40,7 @@ function checkSslExpiry(hostname) {
           expiryDate, 
           issuerDetails, 
           subjectDetails 
-        }); // Include detailed issuer and subject information in the result
+        });
       }
     });
 

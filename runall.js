@@ -10,7 +10,7 @@ function checkSslExpiry(hostname) {
       port: 443,
       method: 'GET',
       agent: new https.Agent({ rejectUnauthorized: true }),
-      checkServerIdentity: () => undefined, // Do not verify the hostname
+      checkServerIdentity: () => undefined, 
     };
 
     const req = https.request(options, (res) => {
@@ -18,7 +18,7 @@ function checkSslExpiry(hostname) {
       if (!cert) {
         reject(new Error('Certificate was not found'));
       } else {
-        const expiryDate = new Date(cert.valid_to).toISOString(); // ISO format for JSON compatibility
+        const expiryDate = new Date(cert.valid_to).toISOString(); 
         // Issuer details
         const issuerDetails = {
           country: cert.issuer.C,
@@ -42,7 +42,7 @@ function checkSslExpiry(hostname) {
           expiryDate, 
           issuerDetails, 
           subjectDetails 
-        }); // Include detailed issuer and subject information in the result
+        });
       }
     });
 
@@ -57,27 +57,22 @@ function checkSslExpiry(hostname) {
 
 
 async function filterExpiringDomains(days) {
-  // Asynchronously read the file
   fs1.readFile('results.json', 'utf8', (err, data) => {
     if (err) {
       console.error('Error reading the file:', err);
       return;
     }
 
-    // Parse the JSON data
     const results = JSON.parse(data);
 
-    // Get today's date and calculate the date 60 days from now
     const today = new Date();
-    const daysFromNow = new Date(today.setDate(today.getDate() + days)); // 60 days from now
+    const daysFromNow = new Date(today.setDate(today.getDate() + days));
 
-    // Filter the results for expiryDates less than 60 days from now
     const filteredResults = results.filter(result => {
       const expiryDate = new Date(result.expiryDate);
       return expiryDate < daysFromNow;
     });
 
-    // Log or process the filtered results
     console.log(filteredResults);
   });
 }
