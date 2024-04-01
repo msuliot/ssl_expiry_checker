@@ -1,4 +1,5 @@
 const fs = require('fs');
+const days = parseInt(process.argv[2], 10) || 60;
 
 async function filterExpiringDomains(days) {
   fs.readFile('results.json', 'utf8', (err, data) => {
@@ -21,5 +22,4 @@ async function filterExpiringDomains(days) {
   });
 }
 
-const days = 60;
 filterExpiringDomains(days);
