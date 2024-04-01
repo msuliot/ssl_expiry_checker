@@ -30,7 +30,7 @@ Run the script, optionally specifying the number of days to check for SSL certif
 node index.js [number_of_days]
 ```
 
-For example, to check for certificates expiring within the next 30 days, run:
+For example, to check for certificates expiring within the next 45 days, run:
 ```bash
 node index.js 45
 ```
