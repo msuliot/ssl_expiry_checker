@@ -1,7 +1,7 @@
 const fs = require('fs').promises;
 const https = require('https');
 const fs1 = require('fs');
-const days = 60;
+const days = parseInt(process.argv[2], 10) || 60;
 
 function checkSslExpiry(hostname) {
   return new Promise((resolve, reject) => {
