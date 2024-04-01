@@ -14,13 +14,8 @@ SSL Expiry Checker is a Node.js application designed to check the SSL certificat
 
 Before you begin, ensure you have Node.js installed on your machine. You can download it from [Node.js official website](https://nodejs.org/).
 
-## Installation
 
-1. Clone the repository to your local machine:
-   ```bash
-   git clone https://github.com/msuliot/ssl-expiry-checker.git
-    ```
-
+## Usage
 Prepare a JSON file named hostnames.json in the root of the project directory. This file should contain an array of hostnames you wish to check, for example:
 json
 ``` JSON
@@ -34,8 +29,10 @@ Run the script, optionally specifying the number of days to check for SSL certif
 ```bash
 node index.js [number_of_days]
 ```
+
 For example, to check for certificates expiring within the next 30 days, run:
 ```bash
 node index.js 45
 ```
+
 The script will generate a results.json file in the root of the project directory, containing details of the domains with expiring SSL certificates within the specified timeframe.
