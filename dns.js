@@ -1,6 +1,5 @@
 const dns = require('dns').promises;
 
-// Function to query DNS records
 async function queryDNS(domain, types) {
     for (let type of types) {
         try {
@@ -48,7 +47,7 @@ async function queryDNS(domain, types) {
     }
 }
 
-// Example usage
+
 const domain = 'openai.com'; // Replace this with any domain
 const types = ['A', 'AAAA', 'MX', 'TXT', 'NS', 'CNAME', 'PTR', 'SRV', 'SOA'];
 
